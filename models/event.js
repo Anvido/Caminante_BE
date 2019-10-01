@@ -1,6 +1,6 @@
 const mongo = require('../db')
 
-const event = mongo.model('event', {
+const event_schema = mongo.Schema({
   user_id: String,
   comment_id: String,
   title: String,
@@ -9,5 +9,7 @@ const event = mongo.model('event', {
   latitude: Number,
   longitude: Number
 })
+
+const event = mongo.model('Event', event_schema)
 
 module.exports = event
