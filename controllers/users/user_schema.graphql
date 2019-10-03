@@ -1,0 +1,32 @@
+type SimpleUser {
+  id: ID!
+  username: String!
+  email: String!
+}
+
+type User {
+  id: ID!
+  username: String!
+  email: String!
+  followers: [SimpleUser!]!
+}
+
+input UserInput {
+  username: String
+  email: String
+  password: String
+}
+
+type Query {
+  getUsers: [User!]!
+  # getMyUser: User!
+  # getUserById(id: ID!): User
+  # getUserByEmail(email: String!): User
+}
+
+# type Mutation {
+#   addFollower(user_id: ID!, follower_id: ID!): User!
+#   removeFollower(user_id: ID!, follower_id: ID!): User!
+#   updateUser(id: ID!, user: UserInput!): User!
+#   deleteMyProfile: User!
+# }

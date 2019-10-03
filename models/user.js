@@ -12,7 +12,11 @@ var user_schema = mongo.Schema({
     required: true,
     match: [regex, 'Email entered is not an email']
   },
-  password_digest: String,
+  password: {
+    type: String,
+    required: true,
+    minlength: [8, 'Password is too short']
+  },
   followers: {
     type: [String],
     default: []
@@ -27,24 +31,22 @@ var user_schema = mongo.Schema({
   }
 })
 
-user_schema.virtual('password')
-
 user_schema.pre('save', function(next) {
-  const u = this
-  if (u.isModified('password')) {
+  var u = this
+  if (!u.isModified('password')) {
     return next()
   }
-  bcrypt.hash(this.password, 9, function(err, hash) {
+  bcrypt.hash(u.password, 9, function(err, hash) {    
     if (err) {
       return next(err)
     }
-    u.password_digest = hash
+    u.password = hash
+    next()  
   })
-  next()
 })
 
 user_schema.methods.validate_password = function(password, cb) {
-  bcrypt.compare(password, this.password_digest, function(err, res) {
+  bcrypt.compare(password, this.password, function(err, res) {
     if (err) {
       return cb(err, null)
     }

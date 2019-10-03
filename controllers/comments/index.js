@@ -1,4 +1,4 @@
-const comment = require('../models/comment')
+const comment = require('../../models/comment')
 const comments_controller = require('express').Router()
 
 comments_controller.get('/', (req, res) => {

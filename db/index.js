@@ -6,7 +6,6 @@ mongo.connect(
   `mongodb://${host}:${dbPort}/${db}`,
   { useNewUrlParser: true, useUnifiedTopology: true }
 )
-console.log("repeti?");
 
 
 module.exports = mongo

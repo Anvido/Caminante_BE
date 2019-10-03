@@ -1,7 +1,10 @@
 const morgan = require('morgan')
 const express = require('express')
 const cors = require('./util/cors')
-const controllers = require('./controllers')
+const passport = require('./auth/passport')
+const graphqlHTTP = require('express-graphql')
+const { api, auth_controller } = require('./controllers')
+
 
 const app = express()
 const port = process.env.PORT || 3000
@@ -11,9 +14,10 @@ app.use(cors)
 app.use(morgan('tiny'))
 app.use(express.json())
 
-controllers.forEach(c => {
-  app.use(c.path, c.controller)
-})
+app.use(auth_controller)
+app.use('/test', graphqlHTTP(api))
+app.use('/', passport.authenticate('jwt', { session: false }), graphqlHTTP(api))
+
 
 
 app.listen(port, () => {

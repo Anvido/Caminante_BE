@@ -1,4 +1,4 @@
-const event = require('../models/event')
+const event = require('../../models/event')
 const events_controller = require('express').Router()
 
 events_controller.get('/', (req, res) => {
