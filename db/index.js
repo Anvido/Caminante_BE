@@ -7,5 +7,4 @@ mongo.connect(
   { useNewUrlParser: true, useUnifiedTopology: true }
 )
 
-
 module.exports = mongo

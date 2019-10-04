@@ -1,9 +1,18 @@
-const comment = require('../../models/comment')
-const comments_controller = require('express').Router()
+const requireSchema = require('require-graphql-file')
+const schema = require('./comment_schema')
+const Comment = require('../../models/comment')
 
-comments_controller.get('/', (req, res) => {
-  res.send('Comments :v')
-  
-})
+const resolvers = {
+  getComments: async () => {
+    var commments = null
+    try {
+      comments = Comment.find({})
+    } catch (err) {
+      console.log(err)
+      return []
+    }
+    return comments
+  }
+}
 
-module.exports = comments_controller
+module.exports = { schema, resolvers}

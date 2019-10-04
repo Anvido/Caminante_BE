@@ -1,9 +1,18 @@
-const event = require('../../models/event')
-const events_controller = require('express').Router()
+const requireSchema = require('require-graphql-file')
+const schema = requireSchema('./event_schema')
+const Event = require('../../models/event')
 
-events_controller.get('/', (req, res) => {
-  res.send('Events :v')
-  
-})
+const resolvers = {
+  getEvents: async () => {
+    var events = null
+    try {
+      events = await Event.find({})
+    } catch (err) {
+      console.log(err)
+      return [] 
+    }
+    return events
+  }
+}
 
-module.exports = events_controller
+module.exports = { schema, resolvers }

@@ -1,0 +1,26 @@
+type Event {
+    id: ID!
+    username: String!
+    title: String!
+    description: String!
+    check_number: Int!
+    latitude: Float!
+    longitude: Float!
+}
+
+input EventInput {
+    title: String!
+    description: String!
+    latitude: Float!
+    longitude: Float!
+}
+
+type Query {
+    getEvents: [Event!]!
+}
+
+# type Mutation {
+#     createEvent(event: EventInput!): Event!
+#     updateEvent(_id: ID!, event: EventInput!): Event!
+#     deleteEvent(_id: ID!): Event!
+# }
