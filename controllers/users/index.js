@@ -12,6 +12,9 @@ const resolvers = {
       return [] 
     }
     return users
+  },
+  getMyUser: async (args, context, info) => {
+    return context.user
   }
 }
 

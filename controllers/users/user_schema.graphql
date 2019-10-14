@@ -19,7 +19,7 @@ input UserInput {
 
 type Query {
   getUsers: [User!]!
-  # getMyUser: User!
+  getMyUser: User!
   # getUserById(id: ID!): User
   # getUserByEmail(email: String!): User
 }

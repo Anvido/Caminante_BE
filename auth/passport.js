@@ -10,12 +10,12 @@ const options = {
 }
 
 passport.use(new JWTStrategy(options, (payload, done) => {
-  User.findOne({ _id: payload.sub }, (err, doc) => {
+  User.findOne({ _id: payload.sub }, '-password', (err, doc) => {
     if (err) {
       return done(null, false)
     }
     if (doc) {
-      return done(null, user)
+      return done(null, doc)
     } else {
       return done(null, false)
     }
