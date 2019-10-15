@@ -2,12 +2,14 @@ type SimpleUser {
   id: ID!
   username: String!
   email: String!
+  avatar: String
 }
 
 type User {
   id: ID!
   username: String!
   email: String!
+  avatar: String
   followers: [SimpleUser!]!
 }
 

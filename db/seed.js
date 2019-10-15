@@ -25,7 +25,7 @@ const numberComments = 2000
 const numberCategories = 15
 
 mongo.connection.on('connected', () => {
-  console.log("DB Coneccted")
+  console.log("DB Connected")
   seedCategories()
   seedUsers()
   seedEvents()
